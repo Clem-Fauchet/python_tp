@@ -48,10 +48,10 @@ for i in range (0, nbP): #loop pour each product
 
     itemSelected = dProduct[pdtCh] #get dictionary item key pdtCh value {}
     quantitySelected = quantity.split(':') #get value in input quantity
-    quantitySelected = ''.join(quantitySelected) #eject list into number
+    quantitySelected = ''.join(quantitySelected) #eject list into str
  
 
-    itemSelected['quantity'] = quantitySelected #update dictionnary
+    itemSelected['quantity'] = abs(int(quantitySelected)) #str to number to absolute update dictionary
     itemSelected['totalHT'] = priceHT #update dictionnary
 
 
@@ -66,39 +66,45 @@ for i in range (0, nbP): #loop pour each product
 
 
 
-newTable = PrettyTable(['Name', 'Price', 'Quantity', 'Total HT'])
-
-print(dProduct)
+newTable = PrettyTable(['Name', 'Price', 'Quantity','Total HT'])
 
 
+for key,value in dProduct.items():
 
-for 'quantity' in dProduct:
-  
-   table.add_row([key, value['name'], value['price']])
-  
+  if 'quantity' in value:
+    newTable.add_row([value['name'], value['price'], value['quantity'], value['totalHT']])
+   
+  else:
+    None
+ 
 else: 
-  print('shit')
+  None
 
 
 print(newTable)
+
+
 
 print('Total HT : '+ str(totalPaid) + '€') #total all products
 
 
 if totalPaid < 200: 
   
-  priceTTC = totalPaid + (totalPaid * 0.2)
+  priceTTC = totalPaid + (totalPaid * 0.2) #price TTC
+  priceTTC = round(priceTTC)
   print('Total TTC : '+ str(priceTTC) + '€')
 
 else:
 
-  remisePrice = round(totalPaid * 0.05, 2)
+  remisePrice = round(totalPaid * 0.05, 2) #remise
   print('Remise 5% : '+ str(remisePrice) + '€') 
 
-  priceHTAfter = totalPaid - remisePrice
+  priceHTAfter = totalPaid - remisePrice #price after remise
+  priceHTAfter = round(priceHTAfter)
   print('Total HT : '+ str(priceHTAfter) + '€') 
 
-  priceTTC = priceHTAfter + (priceHTAfter * 0.2)
+  priceTTC = priceHTAfter + (priceHTAfter * 0.2) #price TTC with remise price
+  priceTTC = round(priceTTC)
   print('Total TTC : '+ str(priceTTC) + '€')
 
 
