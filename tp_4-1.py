@@ -44,22 +44,29 @@ for i in range (0, nbP): #loop pour each product
     priceHT = round((abs(q)*prPdtCh), 2) #prixHT article choose
 
     totalPaid += priceHT #increment total each time
-    print(totalPaid)
 
 
-  #  totalHT = str(totalHT)
-    # print('Total HT : ' + totalHT +'€')
+    itemSelected = dProduct[pdtCh] #get dictionary item key pdtCh value {}
+    quantitySelected = quantity.split(':') #get value in input quantity
+    quantitySelected = ''.join(quantitySelected) #eject list into number
+ 
+
+    itemSelected['quantity'] = quantitySelected #update dictionnary
+    itemSelected['totalHT'] = priceHT #update dictionnary
+    print(itemSelected)
 
 
-  except IndexError: 
+  except IndexError: #si id out of range
     print("Veuillez saisir un id valide. ")
     break
 
 
-  except ValueError: 
-    print("Veuillez saisir une quantité valide. ")
-    break
+  # except ValueError: #si quantité float number
+  #   print("Veuillez saisir une quantité valide. ")
+  #   break
 
+
+newTable = PrettyTable(['Name', 'Price', 'Quantity', 'Total HT'])
 
 
 
