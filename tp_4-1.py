@@ -21,3 +21,26 @@ for (key,value) in dProduct.items():
 print(table)
 
 
+nbreProduit = input("Saisir le nombre de produits à acheter ")
+nbP = int(nbreProduit)
+
+for i in range (0, nbP):
+
+  productChosen = input("Saisir l'Id du produit à ajouter au panier ")
+  pdtCh = int(productChosen)
+
+  print(table[pdtCh - 1 ])
+
+  quantity = input("Saisir une quantité ")
+  q = int(quantity)
+
+  priceProductChosen = dProduct[pdtCh].get('price')
+  prPdtCh = float(priceProductChosen)
+
+  totalHT = round((q*prPdtCh),2)
+  print(totalHT +'€')
+
+
+
+
+
