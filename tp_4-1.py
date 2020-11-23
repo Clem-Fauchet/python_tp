@@ -24,7 +24,10 @@ print(table)
 nbreProduit = input("Saisir le nombre de produits à acheter : ")
 nbP = int(nbreProduit)
 
-for i in range (0, nbP):
+totalPaid = 0.0 #init total
+
+
+for i in range (0, nbP): #loop pour each product
 
   productChosen = input("Saisir l'id du produit à ajouter au panier : ")
   pdtCh = int(productChosen)
@@ -38,9 +41,14 @@ for i in range (0, nbP):
     priceProductChosen = dProduct[pdtCh].get('price')
     prPdtCh = float(priceProductChosen)
 
-    totalHT = round((abs(q)*prPdtCh), 2)
-    totalHT = str(totalHT)
-    print('Total HT : ' + totalHT +'€')
+    priceHT = round((abs(q)*prPdtCh), 2) #prixHT article choose
+
+    totalPaid += priceHT #increment total each time
+    print(totalPaid)
+
+
+  #  totalHT = str(totalHT)
+    # print('Total HT : ' + totalHT +'€')
 
 
   except IndexError: 
