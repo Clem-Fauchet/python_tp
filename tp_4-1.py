@@ -53,7 +53,6 @@ for i in range (0, nbP): #loop pour each product
 
     itemSelected['quantity'] = quantitySelected #update dictionnary
     itemSelected['totalHT'] = priceHT #update dictionnary
-    print(itemSelected)
 
 
   except IndexError: #si id out of range
@@ -61,14 +60,45 @@ for i in range (0, nbP): #loop pour each product
     break
 
 
-  # except ValueError: #si quantité float number
-  #   print("Veuillez saisir une quantité valide. ")
-  #   break
+  except ValueError: #si quantité float number
+    print("Veuillez saisir une quantité valide. ")
+    break
+
 
 
 newTable = PrettyTable(['Name', 'Price', 'Quantity', 'Total HT'])
 
+print(dProduct)
 
 
+
+for 'quantity' in dProduct:
+  
+   table.add_row([key, value['name'], value['price']])
+  
+else: 
+  print('shit')
+
+
+print(newTable)
+
+print('Total HT : '+ str(totalPaid) + '€') #total all products
+
+
+if totalPaid < 200: 
+  
+  priceTTC = totalPaid + (totalPaid * 0.2)
+  print('Total TTC : '+ str(priceTTC) + '€')
+
+else:
+
+  remisePrice = round(totalPaid * 0.05, 2)
+  print('Remise 5% : '+ str(remisePrice) + '€') 
+
+  priceHTAfter = totalPaid - remisePrice
+  print('Total HT : '+ str(priceHTAfter) + '€') 
+
+  priceTTC = priceHTAfter + (priceHTAfter * 0.2)
+  print('Total TTC : '+ str(priceTTC) + '€')
 
 
