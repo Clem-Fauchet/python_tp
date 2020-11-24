@@ -13,14 +13,21 @@ def calcPriceTTC(total):
   priceTTC = round(priceTTC, 2)
   print('Total TTC : '+ str(priceTTC) + '€')
 
+  return priceTTC
+
 
 def calcRemise(total):
-  remisePrice = round(total * 0.05, 2) 
+  remisePrice = total * 0.05
+  remisePrice = round(remisePrice, 2)
   print('Remise 5% : '+ str(remisePrice) + '€')
 
+  return remisePrice
 
-def calcPriceHTAfter(total, remise)
+
+def calcPriceHTAfter(total, remise):
   priceHTAfter = total - remise
-  priceHTAfter = round(priceHTAfter)
+  priceHTAfter = round(priceHTAfter, 2)
   print('Total HT : '+ str(priceHTAfter) + '€')
+
+  return priceHTAfter
 

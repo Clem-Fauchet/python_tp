@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python
 
-def userInput(string, variable):
+def userInput(string):
 
-  inputUser = input("Saisir" + string +  ": ")
+  inputUser = input("Saisir " + string +  " : ")
   variable = int(inputUser)
   return variable
 

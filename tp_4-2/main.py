@@ -25,18 +25,21 @@ print(table)
 
 totalPaid = 0.0 #init total
 
-print(inputFile.userInput("le nombre de produits à acheter", nbP)) #module input
+
+nbP = inputFile.userInput("le nombre de produits à acheter")
 
 
 for i in range (0, nbP): #loop pour each product
 
-  print(inputFile.userInput("l'id du produit à ajouter au panier", pdtCh)) #module input
+
+  pdtCh = inputFile.userInput("l'id du produit à ajouter au panier")
+
 
   try:
+
     print(table[pdtCh - 1 ]) #table index start with 0
 
-    print(inputFile.userInput("une quantité", q))
-
+    q = inputFile.userInput("une quantité")
 
     priceProductChosen = dProduct[pdtCh].get('price')
     prPdtCh = float(priceProductChosen)
@@ -53,13 +56,11 @@ for i in range (0, nbP): #loop pour each product
       quantitySelected = ''.join(quantitySelected) 
 
       itemSelected['quantity'] = abs(int(quantitySelected)) 
-      qItem = itemSelected['quantity']
-      return qItem 
-
+      return itemSelected['quantity']
+    
       itemSelected['totalHT'] = priceHT
-      totalItem = itemSelected['totalHT']
-      return totalItem
-
+      return itemSelected['totalHT']
+      
 
 
   except IndexError: #si id out of range
