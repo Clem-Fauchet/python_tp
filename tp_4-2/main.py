@@ -2,7 +2,7 @@
 #!/usr/bin/python
 
 import calcul
-import input
+import inputFile
 
 from prettytable import PrettyTable
 
@@ -20,30 +20,29 @@ table = PrettyTable(['Id', 'Name', 'Price']) # first table dictionnary
 for (key,value) in dProduct.items():
    table.add_row([key, value['name'], value['price']])
 
-
 print(table)
+
 
 totalPaid = 0.0 #init total
 
-print(input.userInput("le nombre de produits à acheter", nbP))
-
+print(inputFile.userInput("le nombre de produits à acheter", nbP))
 
 
 for i in range (0, nbP): #loop pour each product
 
-  print(input.userInput("l'id du produit à ajouter au panier", pdtCh))
+  print(inputFile.userInput("l'id du produit à ajouter au panier", pdtCh))
 
   try:
     print(table[pdtCh - 1 ]) #table index start with 0
 
-    print(input.userInput("une quantité", q))
+    print(inputFile.userInput("une quantité", q))
 
 
     priceProductChosen = dProduct[pdtCh].get('price')
     prPdtCh = float(priceProductChosen)
 
     priceHT = calcul.calcPriceHT(q, prPdtCh)
-    
+
     totalPaid += priceHT #increment total each time
 
 
