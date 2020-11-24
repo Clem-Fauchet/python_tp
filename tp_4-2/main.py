@@ -3,7 +3,6 @@
 
 import calcul
 import input
-import input 
 
 from prettytable import PrettyTable
 
@@ -38,6 +37,14 @@ for i in range (0, nbP): #loop pour each product
     print(table[pdtCh - 1 ]) #table index start with 0
 
     print(input.userInput("une quantité", q))
+
+
+    priceProductChosen = dProduct[pdtCh].get('price')
+    prPdtCh = float(priceProductChosen)
+
+    priceHT = calcul.calcPriceHT(q, prPdtCh)
+    
+    totalPaid += priceHT #increment total each time
 
 
 
