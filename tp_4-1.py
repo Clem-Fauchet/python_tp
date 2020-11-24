@@ -107,4 +107,3 @@ else:
   priceTTC = round(priceTTC)
   print('Total TTC : '+ str(priceTTC) + '€')
 
-

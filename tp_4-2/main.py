@@ -25,12 +25,12 @@ print(table)
 
 totalPaid = 0.0 #init total
 
-print(inputFile.userInput("le nombre de produits à acheter", nbP))
+print(inputFile.userInput("le nombre de produits à acheter", nbP)) #module input
 
 
 for i in range (0, nbP): #loop pour each product
 
-  print(inputFile.userInput("l'id du produit à ajouter au panier", pdtCh))
+  print(inputFile.userInput("l'id du produit à ajouter au panier", pdtCh)) #module input
 
   try:
     print(table[pdtCh - 1 ]) #table index start with 0
@@ -41,9 +41,24 @@ for i in range (0, nbP): #loop pour each product
     priceProductChosen = dProduct[pdtCh].get('price')
     prPdtCh = float(priceProductChosen)
 
-    priceHT = calcul.calcPriceHT(q, prPdtCh)
+    priceHT = calcul.calcPriceHT(q, prPdtCh) #module calcul
 
     totalPaid += priceHT #increment total each time
+
+
+    def updateDictonary():
+
+      itemSelected = dProduct[pdtCh] 
+      quantitySelected = quantity.split(':') 
+      quantitySelected = ''.join(quantitySelected) 
+
+      itemSelected['quantity'] = abs(int(quantitySelected)) 
+      qItem = itemSelected['quantity']
+      return qItem 
+
+      itemSelected['totalHT'] = priceHT
+      totalItem = itemSelected['totalHT']
+      return totalItem
 
 
 
@@ -55,3 +70,37 @@ for i in range (0, nbP): #loop pour each product
   except ValueError: #si quantité float number
     print("Veuillez saisir une quantité valide. ")
     break
+
+
+newTable = PrettyTable(['Name', 'Price', 'Quantity','Total HT'])
+
+
+for key,value in dProduct.items():
+
+  if 'quantity' in value:
+    newTable.add_row([value['name'], value['price'], value['quantity'], value['totalHT']])
+   
+  else:
+    None
+ 
+else: 
+  None
+
+
+print(newTable)
+
+
+print('Total HT : '+ str(totalPaid) + '€') #total all products
+
+
+if totalPaid < 200: 
+  
+  priceTTC = calcul.calcPriceTTC(totalPaid) #module calcul
+
+else:
+
+  remisePrice = calcul.calcRemise(totalPaid) #module calcul
+
+  priceHTAfter = calcul.calcPriceHTAfter(totalPaid, remisePrice) #module calcul
+
+  priceTTC = calcul.calcPriceTTC(priceHTAfter) #module calcul
