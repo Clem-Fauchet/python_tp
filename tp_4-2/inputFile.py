@@ -5,8 +5,8 @@ def userInput(string):
 
   inputUser = input("Saisir " + string +  " : ")
   variable = int(inputUser)
-  return variable
 
+  return variable
 
 
 

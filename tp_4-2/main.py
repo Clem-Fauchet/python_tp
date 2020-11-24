@@ -39,8 +39,9 @@ for i in range (0, nbP): #loop pour each product
 
     print(table[pdtCh - 1 ]) #table index start with 0
 
-    q = inputFile.userInput("une quantité")
-
+    quantity = inputFile.userInput("une quantité")
+    q = abs(quantity) ##absolute valeur quantity
+   
     priceProductChosen = dProduct[pdtCh].get('price')
     prPdtCh = float(priceProductChosen)
 
@@ -49,18 +50,16 @@ for i in range (0, nbP): #loop pour each product
     totalPaid += priceHT #increment total each time
 
 
-    def updateDictonary():
+    def updateDictionary(pdtCh, quantity, priceHT):
 
       itemSelected = dProduct[pdtCh] 
-      quantitySelected = quantity.split(':') 
-      quantitySelected = ''.join(quantitySelected) 
-
-      itemSelected['quantity'] = abs(int(quantitySelected)) 
-      return itemSelected['quantity']
-    
+     
+      itemSelected['quantity'] = quantity
       itemSelected['totalHT'] = priceHT
-      return itemSelected['totalHT']
-      
+
+      return itemSelected
+    
+    dProduct = updateDictionary(pdtCh, q, priceHT)
 
 
   except IndexError: #si id out of range
@@ -78,7 +77,7 @@ newTable = PrettyTable(['Name', 'Price', 'Quantity','Total HT'])
 
 for key,value in dProduct.items():
 
-  if 'quantity' in value:
+  if str('quantity') in value:
     newTable.add_row([value['name'], value['price'], value['quantity'], value['totalHT']])
    
   else:
@@ -86,7 +85,6 @@ for key,value in dProduct.items():
  
 else: 
   None
-
 
 print(newTable)
 
